@@ -1,6 +1,11 @@
 import PDFDocument from "pdfkit";
 import fs from "fs";
-import type { ResultResponse, Component } from "../request/types/types.ts";
+import type {
+  ResultResponse,
+  Component,
+  DetailsIssuesResponse,
+  Issue,
+} from "../request/types/types.ts";
 import { baseComponentTitleMapper } from "./result-title-mappers.ts";
 import { metricToMapper } from "./metric-mapper.ts";
 
@@ -25,10 +30,37 @@ const getMetricValues = (
   return result;
 };
 
+const generateIssues = (
+  doc: PDFKit.PDFDocument,
+  projectIssues: Issue[]
+): void => {
+  doc.addPage();
+  doc.fontSize(20).text("Issues details:", { align: "center" }).moveDown(1);
+  for (const { rule, severity, message } of projectIssues) {
+    doc
+      .fontSize(14)
+      .text("Rule: ", { continued: true })
+      .text(rule)
+      .moveDown(0.5);
+    doc
+      .fontSize(14)
+      .text("Severity: ", { continued: true })
+      .text(severity[0].toUpperCase() + severity.slice(1).toLowerCase())
+      .moveDown(0.5);
+    doc
+      .fontSize(14)
+      .text("Message: ", { continued: true })
+      .text(message)
+      .moveDown(0.5);
+    doc.moveTo(50, doc.y).lineTo(550, doc.y).stroke().moveDown(1.5);
+  }
+};
+
 const generatePDFResult = (
   data: ResultResponse,
   outputPath: string,
-  createdAt: string
+  createdAt: string,
+  projectIssues: null | DetailsIssuesResponse
 ) => {
   const doc = new PDFDocument();
   const componentTitle = baseComponentTitleMapper(data.baseComponent.key);
@@ -63,6 +95,9 @@ const generatePDFResult = (
       .text(value)
       .moveDown(0.5);
   });
+  if (projectIssues) {
+    generateIssues(doc, projectIssues.issues);
+  }
   doc.end();
 };
 

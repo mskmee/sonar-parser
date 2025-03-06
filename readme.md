@@ -10,4 +10,10 @@ Fill .env file.
 npm start
 ```
 
+or
+
+```
+npm run start-details
+```
+
 Parse sonar report and create pdf file with results

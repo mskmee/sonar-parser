@@ -33,7 +33,7 @@ const metricToMapper = (metric: string): MetricMapper => {
       mapper: (value) => value,
     },
     maintainability_issues: {
-      title: "Issues",
+      title: "Maintainability Issues",
       mapper: formatJSONString,
     },
     ncloc: {
@@ -61,7 +61,7 @@ const metricToMapper = (metric: string): MetricMapper => {
       mapper: (value) => `${value}%`,
     },
     code_smells: {
-      title: "Maintainability",
+      title: "Maintainability code smells",
       mapper: (value) => value,
     },
   };

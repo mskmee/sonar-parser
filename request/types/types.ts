@@ -52,10 +52,65 @@ type ComponentToShow = {
   ancestors: any[];
 };
 
+type Issue = {
+  key: string;
+  rule: string;
+  severity: string;
+  component: string;
+  project: string;
+  line: number;
+  hash: string;
+  textRange: TextRange;
+  flows: any[];
+  status: string;
+  message: string;
+  effort: string;
+  debt: string;
+  author: string;
+  tags: any[];
+  creationDate: string;
+  updateDate: string;
+  type: string;
+  scope: string;
+  quickFixAvailable: boolean;
+  messageFormattings: any[];
+  codeVariants: any[];
+  cleanCodeAttribute: string;
+  cleanCodeAttributeCategory: string;
+  impacts: Impact[];
+  issueStatus: string;
+  prioritizedRule: boolean;
+};
+
+type TextRange = {
+  startLine: number;
+  endLine: number;
+  startOffset: number;
+  endOffset: number;
+};
+
+type Impact = {
+  softwareQuality: string;
+  severity: string;
+};
+
+type DetailsIssuesResponse = {
+  total: number;
+  p: number;
+  ps: number;
+  paging: Paging;
+  effortTotal: number;
+  issues: Issue[];
+  components: any[];
+  facets: any[];
+};
+
 export type {
   ComponentToShow,
   ResultResponse,
   Component,
   Measure,
   MetricValue,
+  Issue,
+  DetailsIssuesResponse,
 };

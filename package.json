@@ -4,7 +4,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node --env-file=.env index.ts"
+    "start": "node --env-file=.env index.ts",
+    "start-details": "IS_FULL_PARSE=True node --env-file=.env index.ts"
   },
   "author": "",
   "license": "ISC",
