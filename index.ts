@@ -6,7 +6,7 @@ import {
 import { generatePDFResult, getFormattedDate } from "./helpers/helpers.ts";
 import { config } from "./config.ts";
 
-const SONAR_PROJECTS = []; // add projects here
+const SONAR_PROJECTS = ["grektek.web", "everbeat-api", "grektek.mobile"];
 for (let i = 0; i < SONAR_PROJECTS.length; i++) {
   const project = SONAR_PROJECTS[i];
   const showComponent = await getSonarShowComponent(project);

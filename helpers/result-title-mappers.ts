@@ -2,7 +2,7 @@ const baseComponentTitleMapper = (title: string): string => {
   const map = {
     "grektek.mobile": "Everbeat mobile Application",
     "everbeat-api": "Everbeat Backend",
-    "Application result": "Everbeat Web Dashboard",
+    "grektek.web": "Everbeat Web Dashboard",
   };
 
   return map[title] ?? "Application result";
